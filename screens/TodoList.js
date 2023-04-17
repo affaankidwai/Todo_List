@@ -20,24 +20,27 @@ export default function TodoList() {
 
   return (
     <View style={styles.container}>
-      <Text>hello</Text>
-      <FlatList
-        data={todos}
-        renderItem={({ item }) => (
-          <View style={styles.todoItem}>
-            <Text style={styles.todoText}>{item.text}</Text>
-            <Text style={styles.todoText}>
-              Completed: {item.completed.toString()}
-            </Text>
-            {item.deadline && (
+      <Text>Upcoming</Text>
+      <View style={styles.box}>
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => (
+            <View style={styles.todoItem}>
+              <Text style={styles.todoText}>{item.text}</Text>
               <Text style={styles.todoText}>
-                {new Date(item.deadline).toLocaleDateString()}
+                Com: {item.completed.toString()}
               </Text>
-            )}
-          </View>
-        )}
-        keyExtractor={(item) => item._id}
-      />
+              {item.deadline && (
+                <Text style={styles.todoText}>
+                  {new Date(item.deadline).toLocaleDateString()}
+                </Text>
+              )}
+            </View>
+          )}
+          keyExtractor={(item) => item._id}
+          horizontal={true}
+        />
+      </View>
       <Button
         style={styles.button}
         title="Add Todo"
@@ -51,13 +54,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "flexStart",
     justifyContent: "center",
+    marginTop: 40,
   },
   button: {
     marginBottom: 80,
   },
   todoText: {
-    padding: 30,
+    padding: 2,
+  },
+  box: {
+    margin: 10,
+  },
+  todoItem: {
+    backgroundColor: "yellow",
+    borderWidth: 2,
+    borderColor: "black",
+    borderRadius: 5,
+    margin: 20,
+    height: 130,
+    width: 160,
   },
 });
