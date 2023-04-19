@@ -9,10 +9,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import Svg, { Circle } from "react-native-svg";
 import axios from "axios";
-// import Icon1 from "../assets/Icon-color.svg";
-// import Icon2 from "../assets/add.svg";
 import { useNavigation } from "@react-navigation/native";
 
 export default function TodoList() {
@@ -42,6 +39,8 @@ export default function TodoList() {
     setCurrentDate(dateObj.toLocaleDateString("en-US", options).split(",")[1]);
   }, []);
 
+  var x = 75;
+
   const navigation = useNavigation();
 
   return (
@@ -54,16 +53,14 @@ export default function TodoList() {
         <Image source={require("../assets/Icon-color.png")} />
       </TouchableOpacity>
 
-      {/* <TouchableOpacity onPress={() => console.log("Button 2 pressed")}>
-        <Svg width={24} height={24} viewBox="0 0 24 24">
-          <Path fill="#FFF" d={Icon2} />
-        </Svg>
-      </TouchableOpacity> */}
       <Text style={styles.mainText}>Good Morning</Text>
-      <View>
+      <View style={styles.above}>
         <View style={styles.leftUnder}>
           <Text style={styles.todayText}> Today's {currentDay}</Text>
           <Text style={styles.dateText}>{currentDate}, 2023</Text>
+        </View>
+        <View style={styles.rightUnder}>
+          {/* <Text style={styles.xText}>{x}</Text> */}
         </View>
       </View>
       <Text style={styles.upcoming}>Upcoming</Text>
@@ -129,16 +126,14 @@ export default function TodoList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2E3840",
+    backgroundColor: "#0B2447",
     alignItems: "flexStart",
     justifyContent: "flexStart",
   },
   img1: {
-    width: 2,
-    height: 2,
     position: "absolute",
     top: 70,
-    right: 90,
+    right: 40,
   },
   dp: {
     width: 70,
@@ -153,6 +148,7 @@ const styles = StyleSheet.create({
     marginTop: 180,
     fontSize: 80,
   },
+  above: {},
   leftUnder: {
     margin: 20,
   },
@@ -161,6 +157,12 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: "#B9E9FC",
+  },
+  rightUnder: {},
+  xText: {
+    color: "#F2E3DB",
+    textAlign: "right",
+    marginRight: 20,
   },
   todoText: {
     color: "#F2E3DB",
