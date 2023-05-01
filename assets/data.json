@@ -1,0 +1,74 @@
+[
+  {
+    "text": "Buy groceries",
+    "description": "Buy eggs, milk, bread and butter",
+    "start_date": "2023-04-22T10:30:00.000Z",
+    "category": "Shopping",
+    "completed": false,
+    "deadline": "2023-04-23T18:00:00.000Z"
+  },
+  {
+    "text": "Submit report",
+    "description": "Submit quarterly sales report",
+    "start_date": "2023-04-21T00:00:00.000Z",
+    "category": "Work",
+    "completed": false,
+    "deadline": "2023-04-25T12:00:00.000Z"
+  },
+  {
+    "text": "Call mom",
+    "description": "Check up on mom's health",
+    "start_date": "2023-04-20T10:00:00.000Z",
+    "category": "Personal",
+    "completed": false,
+    "deadline": "2023-04-21T22:00:00.000Z"
+  },
+  {
+    "text": "Book flight tickets",
+    "description": "Book flight tickets for vacation",
+    "start_date": "2023-05-01T00:00:00.000Z",
+    "category": "Travel",
+    "completed": false,
+    "deadline": "2023-04-25T16:00:00.000Z"
+  },
+  {
+    "text": "Attend webinar",
+    "description": "Attend webinar on marketing trends",
+    "start_date": "2023-04-21T08:00:00.000Z",
+    "category": "Work",
+    "completed": false,
+    "deadline": "2023-04-22T15:30:00.000Z"
+  },
+  {
+    "text": "Go for a run",
+    "description": "Go for a 5 km run in the park",
+    "start_date": "2023-04-21T07:00:00.000Z",
+    "category": "Health",
+    "completed": false,
+    "deadline": "2023-04-23T08:30:00.000Z"
+  },
+  {
+    "text": "Watch movie",
+    "description": "Watch latest action movie",
+    "start_date": "2023-04-20T20:00:00.000Z",
+    "category": "Entertainment",
+    "completed": false,
+    "deadline": "2023-04-21T23:59:00.000Z"
+  },
+  {
+    "text": "Pay rent",
+    "description": "Pay rent for the month of May",
+    "start_date": "2023-04-22T00:00:00.000Z",
+    "category": "Finance",
+    "completed": false,
+    "deadline": "2023-04-30T10:00:00.000Z"
+  },
+  {
+    "text": "Clean house",
+    "description": "Clean the entire house",
+    "start_date": "2023-04-23T10:00:00.000Z",
+    "category": "Home",
+    "completed": false,
+    "deadline": "2023-04-25T14:45:00.000Z"
+  }
+]

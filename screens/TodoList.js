@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import WeekdayButtons from "../components/WeekdayButtons";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -40,6 +41,33 @@ export default function TodoList() {
   }, []);
 
   var x = 75;
+  const [selectedDay, setSelectedDay] = useState(null);
+  const getTimeLeft = (deadline) => {
+    const now = new Date();
+    const timeLeft = new Date(deadline) - now;
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+
+    if (timeLeft < 0) {
+      return "Deadline has passed";
+    }
+
+    if (days > 0) {
+      return `${days} day${days > 1 ? "s" : ""} ${hours} hr${
+        hours > 1 ? "s" : ""
+      } ${minutes} min left`;
+    } else {
+      return `${hours} hr${hours > 1 ? "s" : ""} ${minutes} min left`;
+    }
+  };
+  const [deadline, setDeadline] = useState("2023-04-30T10:00:00.000Z");
+
+  const handleDaySelect = (day) => {
+    setSelectedDay(day);
+    console.log("Button 2 pressed");
+    // perform the action for the selected day
+  };
 
   const navigation = useNavigation();
 
@@ -63,16 +91,17 @@ export default function TodoList() {
           {/* <Text style={styles.xText}>{x}</Text> */}
         </View>
       </View>
+      <WeekdayButtons selectedDay={selectedDay} onDaySelect={handleDaySelect} />
+
       <Text style={styles.upcoming}>Upcoming</Text>
       <View style={styles.upcomingBox}>
+        <Text>{getTimeLeft(deadline)}</Text>
         <FlatList
           data={todos}
           renderItem={({ item }) => (
             <View style={styles.todoUpcoming}>
+              <Text style={styles.todoText}>{item.category.toString()}</Text>
               <Text style={styles.todoText}>{item.text}</Text>
-              <Text style={styles.todoText}>
-                Com: {item.completed.toString()}
-              </Text>
               {item.deadline && (
                 <Text style={styles.todoText}>
                   {new Date(item.deadline).toLocaleDateString()}
@@ -81,27 +110,7 @@ export default function TodoList() {
             </View>
           )}
           keyExtractor={(item) => item._id}
-          horizontal={true}
-        />
-        <Text style={styles.completed}>Completed</Text>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <View style={styles.todoCompleted}>
-              <Text style={styles.todoText}>{item.text}</Text>
-              <Text style={styles.todoText}>
-                Com: {item.completed.toString()}
-              </Text>
-
-              {item.deadline && (
-                <Text style={styles.todoText}>
-                  {new Date(item.deadline).toLocaleDateString()}
-                </Text>
-              )}
-            </View>
-          )}
-          keyExtractor={(item) => item._id}
-          horizontal={true}
+          horizontal={false}
         />
       </View>
       <Button
@@ -109,6 +118,12 @@ export default function TodoList() {
         title="Add Todo"
         onPress={() => navigation.navigate("AddTodo")}
       />
+      <TouchableOpacity
+        style={styles.img2}
+        onPress={() => console.log("Button 3 pressed")}
+      >
+        <Image source={require("../assets/add.png")} />
+      </TouchableOpacity>
       <Text>heuiufhao</Text>
       <Text>heuiufhao</Text>
       <Text>heuiufhao</Text>
@@ -134,6 +149,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 70,
     right: 40,
+  },
+  img2: {
+    position: "absolute",
+    bottom: 20,
+    right: "42%",
   },
   dp: {
     width: 70,
@@ -188,15 +208,15 @@ const styles = StyleSheet.create({
   upcomingBox: {
     margin: 10,
     height: 400,
+    width: "95%",
   },
   todoUpcoming: {
     backgroundColor: "yellow",
     borderWidth: 2,
     borderColor: "black",
     borderRadius: 15,
-    margin: 10,
+    margin: 2,
     height: 140,
-    width: 180,
   },
   todoCompleted: {
     backgroundColor: "green",
