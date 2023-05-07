@@ -7,6 +7,7 @@ import {
   Button,
   Image,
   ScrollView,
+  SectionList,
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
@@ -100,10 +101,12 @@ export default function TodoList() {
           data={todos}
           renderItem={({ item }) => (
             <View style={styles.todoUpcoming}>
-              <Text style={styles.todoText}>{item.category.toString()}</Text>
-              <Text style={styles.todoText}>{item.text}</Text>
+              <View style={styles.todoCategory}>
+                <Text style={styles.todoText}>{item.category}</Text>
+                <Text style={styles.todoText1}>{item.text}</Text>
+              </View>
               {item.deadline && (
-                <Text style={styles.todoText}>
+                <Text style={styles.todoText2}>
                   {new Date(item.deadline).toLocaleDateString()}
                 </Text>
               )}
@@ -120,7 +123,7 @@ export default function TodoList() {
       />
       <TouchableOpacity
         style={styles.img2}
-        onPress={() => console.log("Button 3 pressed")}
+        onPress={() => navigation.navigate("AddTodo")}
       >
         <Image source={require("../assets/add.png")} />
       </TouchableOpacity>
@@ -185,7 +188,22 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   todoText: {
-    color: "#F2E3DB",
+    padding: 2,
+    fontSize: 20,
+    fontStyle: "italic",
+  },
+
+  todoText1: {
+    color: "black",
+    fontSize: 48,
+    fontFamily: "Helvetica",
+    // fontWeight: "bold",
+  },
+  todoText2: {
+    color: "black",
+    alignSelf: "flex-start",
+    padding: 8,
+    letterSpacing: 2,
   },
   button: {
     marginBottom: 20,
@@ -202,21 +220,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
   },
-  todoText: {
-    padding: 2,
-  },
+
   upcomingBox: {
     margin: 10,
     height: 400,
     width: "95%",
   },
   todoUpcoming: {
-    backgroundColor: "yellow",
-    borderWidth: 2,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+
+    backgroundColor: "#F7D060",
+    borderWidth: 1,
     borderColor: "black",
-    borderRadius: 15,
-    margin: 2,
-    height: 140,
+    borderRadius: 20,
+    // margin: ,
+    height: 160,
+  },
+  todoCategory: {
+    padding: 7,
   },
   todoCompleted: {
     backgroundColor: "green",
